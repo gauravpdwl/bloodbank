@@ -18,5 +18,6 @@ app.listen(port, (err)=>{
         console.log("Error in Launching Application ", err);
     }
 
-    console.log("Application is up and running on port ",port);
+    console.log("Application is up and running on port -",port);
+    console.log("Hello This is your application");
 });
