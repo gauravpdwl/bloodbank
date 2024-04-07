@@ -1,17 +1,26 @@
 const express=require('express');
 const port=8000;
 const path=require('path');
+const bodyParser = require('body-parser');
+
+const db=require('./database/mongoosedb.js');
+
+
 
 const app=express();
 
 app.set('views', path.join(__dirname, 'views')); // Set the views directory
 app.set('view engine', 'ejs');
 
-app.get('/', function(req, res){
-    // const serverIp = req.socket.localAddress;
-    // console.log(serverIp);
-    res.render('welcome.ejs');
-});
+// app.get('/', function(req, res){
+//     // const serverIp = req.socket.localAddress;
+//     // console.log(serverIp);
+//     res.render('welcome.ejs');
+// });
+
+app.use(bodyParser.json());
+
+app.use('/', require('./routes/index.js'));
 
 app.listen(port, (err)=>{
     if(err){
@@ -19,5 +28,4 @@ app.listen(port, (err)=>{
     }
 
     console.log("Application is up and running on port -",port);
-    console.log("Hello This is your application");
 });
